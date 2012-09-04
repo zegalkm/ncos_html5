@@ -1,0 +1,16 @@
+#player{
+	position:absolute;
+	background: url(../gw.gif) no-repeat;
+	width:48px;
+	height:48px;
+}
+
+#map{
+	position:relative;
+	border:1px solid black;
+	height:548px;
+	width:680px;
+}
+.select_td{
+	background-color: red;
+}
