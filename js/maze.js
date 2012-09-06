@@ -1,5 +1,5 @@
 $(function(){
-
+	alert("하이!!");
 	var player = '<div id="player"></div>';
 	$("#map").append(player);
 
@@ -44,22 +44,23 @@ $(function(){
 		
 		var x_e = x+movingDistance;
 		for(var i=x+1; i<=x_e;i++){
+			alert($("td[id="+i+"_"+y+"]").attr("type"));
 			$("td[id="+i+"_"+y+"]").addClass("select_td");
 			/**$("td[id="+i+"_"+y+"]").click(function(e){
 				var kk = (i-1)*movePiont;
 				$("#player").css('left',kk);
 				$("td").css("background-color","");
 			});*/
+			$("td[id="+i+"_"+y+"]").click(function(e){
+				var id = this.id;
+				if($("td[id="+id+"]").attr("class")=='select_td'){//왜 이럴까..
+					var k = id.split("_");
+					var kk = parseInt(k[0])*movePiont;
+					$("#player").animate({"left":kk+"px"},"slow");
+					$("td").removeClass("select_td");
+				}
+			});
 		}
-		$("td.select_td").click(function(e){
-			var id = this.id;
-			var k = id.split("_");
-			var kk = parseInt(k[0])*movePiont;
-			$("#player").animate({"left":kk+"px"},"slow");
-			$("td").removeClass("select_td");
-		});
-	
-	
 
 	});
 
