@@ -1,5 +1,4 @@
 $(function(){
-	alert("하이!!");
 	var player = '<div id="player"></div>';
 	$("#map").append(player);
 
@@ -43,8 +42,8 @@ $(function(){
 		var y = position.top/movePiont;
 		
 		var x_e = x+movingDistance;
+		//우측
 		for(var i=x+1; i<=x_e;i++){
-			alert($("td[id="+i+"_"+y+"]").attr("type"));
 			$("td[id="+i+"_"+y+"]").addClass("select_td");
 			/**$("td[id="+i+"_"+y+"]").click(function(e){
 				var kk = (i-1)*movePiont;
@@ -61,6 +60,48 @@ $(function(){
 				}
 			});
 		}
+		var y_e = y+movingDistance;
+		//하단
+		for(var i=y+1; i<=y_e;i++){
+			$("td[id="+x+"_"+i+"]").addClass("select_td");
+			/**$("td[id="+i+"_"+y+"]").click(function(e){
+				var kk = (i-1)*movePiont;
+				$("#player").css('left',kk);
+				$("td").css("background-color","");
+			});*/
+			$("td[id="+x+"_"+i+"]").click(function(e){
+				var id = this.id;
+				if($("td[id="+id+"]").attr("class")=='select_td'){//왜 이럴까..
+					var k = id.split("_");
+					var kk = parseInt(k[1])*movePiont;
+					alert(kk);
+					$("#player").animate({"top":kk+"px"},"slow");
+					$("td").removeClass("select_td");
+				}
+			});
+		}
+		y_e = y-movingDistance;
+		alert(y_e);
+		//상단
+		for(var i=y-1; i>=y_e;i--){
+			$("td[id="+x+"_"+i+"]").addClass("select_td");
+			/**$("td[id="+i+"_"+y+"]").click(function(e){
+				var kk = (i-1)*movePiont;
+				$("#player").css('left',kk);
+				$("td").css("background-color","");
+			});*/
+			$("td[id="+x+"_"+i+"]").click(function(e){
+				alert(x+":"+i);
+				var id = this.id;
+				if($("td[id="+id+"]").attr("class")=='select_td'){//왜 이럴까..
+					var k = id.split("_");
+					var kk = parseInt(k[1])*movePiont;
+					alert(kk);
+					$("#player").animate({"top":kk+"px"},"slow");
+					$("td").removeClass("select_td");
+				}
+			});
+		}		
 
 	});
 
