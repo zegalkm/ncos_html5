@@ -65,6 +65,29 @@ $(function(){
 		var y_top = y-movingDistance;
 		for(var i=y-1; i>=y_top;i--){
 			$("td[id="+x+"_"+i+"]").addClass("select_td");
+		}	
+
+		//NW ,  SW
+		var k = Math.abs(y_top - y)-1;
+		for(var i=x-1; i>x_left; i--){
+			for(var j=y-k; j<y; j++){
+				$("td[id="+i+"_"+j+"]").addClass("select_td");
+			}
+			for(var j=y+k; j>y; j--){
+				$("td[id="+i+"_"+j+"]").addClass("select_td");
+			}
+			k--;
+		}
+		//NE  ,  SE
+		var k2 = Math.abs(y_top - y)-1;
+		for(var i=x+1; i<x_right; i++){
+			for(var j=y-k2; j<y; j++){
+				$("td[id="+i+"_"+j+"]").addClass("select_td");
+			}
+			for(var j=y+k2; j>y; j--){
+				$("td[id="+i+"_"+j+"]").addClass("select_td");
+			}
+			k2--;
 		}		
 	});
 
